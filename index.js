@@ -125,6 +125,13 @@ app.use('/api/admissions', require('./routes/admissions'));
 app.use('/api/contact',    require('./routes/contact'));
 app.use('/api/admin',      require('./routes/admin'));
 
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'AIPMS API is running ✅',
+    version: 'v3'
+  });
+});
+
 // Health check (no DB middleware overhead)
 app.get('/api/health', (req, res) => res.json({
   status:    'ok',
