@@ -113,9 +113,9 @@ app.use(async (req, res, next) => {
 });
 
 // ─────────────────────────────────────────────────────────────────
-// Static Files
+// Static Files (commented out for API-only deployment)
 // ─────────────────────────────────────────────────────────────────
-app.use(express.static(path.join(__dirname, '../public')));
+// app.use(express.static(path.join(__dirname, '../public')));
 
 // ─────────────────────────────────────────────────────────────────
 // API Routes
@@ -134,22 +134,22 @@ app.get('/api/health', (req, res) => res.json({
 }));
 
 // ─────────────────────────────────────────────────────────────────
-// Page Routes (SPA / HTML files)
+// Page Routes (commented out for API-only deployment)
 // ─────────────────────────────────────────────────────────────────
-const sendPage = (file) => (req, res) => {
-  const filePath = path.join(__dirname, '../public', file);
-  if (fs.existsSync(filePath)) {
-    res.sendFile(filePath);
-  } else {
-    res.status(404).send('Page not found');
-  }
-};
+// const sendPage = (file) => (req, res) => {
+//   const filePath = path.join(__dirname, '../public', file);
+//   if (fs.existsSync(filePath)) {
+//     res.sendFile(filePath);
+//   } else {
+//     res.status(404).send('Page not found');
+//   }
+// };
 
-app.get('/login',    sendPage('login.html'));
-app.get('/register', sendPage('login.html'));   // same page, different tabs
-app.get('/portal',   sendPage('portal.html'));
-app.get('/admin',    sendPage('admin/index.html'));
-app.get('*',         sendPage('index.html'));   // catch-all for SPA
+// app.get('/login',    sendPage('login.html'));
+// app.get('/register', sendPage('login.html'));   // same page, different tabs
+// app.get('/portal',   sendPage('portal.html'));
+// app.get('/admin',    sendPage('admin/index.html'));
+// app.get('*',         sendPage('index.html'));   // catch-all for SPA
 
 // ─────────────────────────────────────────────────────────────────
 // Global Error Handler
